@@ -1,0 +1,71 @@
+README.md
+  s_08cc3a224b53df::t_c0b1e4222bc867 1-78
+notebooks/05_subagents.ipynb
+  s_08cc3a224b53df::t_7466324bbfb6b2 1-328,355-477
+  s_08cc3a224b53df::t_a956448c56ad64 329-354
+notebooks/14_online_evals.ipynb
+  s_08cc3a224b53df::t_77ebb201c0a857 1-749
+notebooks/01_first_deep_agent.ipynb
+  s_08cc3a224b53df::t_eb3320d995d6a9 95-98,109-112,124-125,129-130,179-186,188-190,408-409
+  s_08cc3a224b53df::t_fd9237b8953ce3 1-94,99-108,113-123,126-128,131-178,187,191-407,410-477
+notebooks/04_mcp.ipynb
+  s_08cc3a224b53df::t_7466324bbfb6b2 1-428
+notebooks/11_single_step_evals.ipynb
+  s_08cc3a224b53df::t_77ebb201c0a857 1-762
+notebooks/12_trajectory_evals.ipynb
+  s_08cc3a224b53df::t_3ff60872d8dbf8 204-206,221-223
+  s_08cc3a224b53df::t_77ebb201c0a857 1-203,207-220,224-714
+notebooks/13_evals_in_ci.ipynb
+  s_08cc3a224b53df::t_77ebb201c0a857 1-792
+notebooks/07_memory.ipynb
+  s_08cc3a224b53df::t_68beeeb82d7304 1-25,27-106,108-115,117-137,139-161,163-181,183-231,235-251,253-364,367-545
+  s_08cc3a224b53df::t_011786bd73cbe8 252
+  s_08cc3a224b53df::t_ecd7558aab06e2 26,232-234,365-366
+  s_08cc3a224b53df::t_b94b1b665551db 107,116,138,162,182
+notebooks/00_setup.ipynb
+  s_08cc3a224b53df::t_b41e571cc2c4c4 287-289,313,317-320,322-323,325-327,329,331-335,337-368,441-443
+  s_08cc3a224b53df::t_9d78f3b75285c0 1-286,290-312,314-316,321,324,328,330,336,369-440,444-520
+notebooks/02_backends.ipynb
+  s_08cc3a224b53df::t_721a6162a98093 1-262,264-277,280-438,440-454,456-507
+  s_08cc3a224b53df::t_b94b1b665551db 263,278-279,439,455
+notebooks/09_under_the_hood.ipynb
+  s_08cc3a224b53df::t_ecd7558aab06e2 254,259-267,276,279,281-290
+  s_08cc3a224b53df::t_68beeeb82d7304 1-253,255-258,268-275,277-278,280,291-500
+notebooks/06_middleware_and_hitl.ipynb
+  s_08cc3a224b53df::t_7466324bbfb6b2 1-254,262-268,273-618,620-676,678-693,703-778,787-790,792-799,802-825,831-844,846-849,851,858-873,875-878,884-934,937-1032,1034-1087
+  s_08cc3a224b53df::t_ccb8d1310ffb1e 619
+  s_08cc3a224b53df::t_1748f1f800ffb7 677,694-702,935-936
+  s_08cc3a224b53df::t_6fdc7cc0e53a15 779-786,791,800-801,845,874
+  s_08cc3a224b53df::t_85e74318d4e94f 826-830,850,852-857,879-883,1033
+  s_08cc3a224b53df::t_71c86e75989cb6 255-261,269-272
+notebooks/10_evals_from_traces.ipynb
+  s_08cc3a224b53df::t_77ebb201c0a857 1-683
+notebooks/03_tools.ipynb
+  s_08cc3a224b53df::t_6c098ad71f45e4 1-614
+tools/check_notebooks.py
+  s_08cc3a224b53df::t_0e6f0fce512e0b 1-75
+.gitignore
+  s_08cc3a224b53df::t_08e3a1a56ff743 1-7,17-31
+  s_08cc3a224b53df::t_8c014340079a94 8-16
+CONTRIBUTING.md
+  s_08cc3a224b53df::t_3a0dc37229d5de 1-89
+notebooks/08_skills.ipynb
+  s_08cc3a224b53df::t_b94b1b665551db 130-131,140,176,214,241,326,335,362,389,499,501,530,536
+  s_08cc3a224b53df::t_68beeeb82d7304 1-129,132-139,141-175,177-213,215-240,242-325,327-334,336-361,363-388,390-498,500,502-529,531-535,537-599
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "9c5e4d3fc01b2a3e88c6a18e8790fc7bf9de9022",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
