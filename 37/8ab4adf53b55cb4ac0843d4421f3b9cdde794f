@@ -1,0 +1,33 @@
+pyproject.toml
+  s_08cc3a224b53df::t_70195487a551bd 5,37
+  s_08cc3a224b53df::t_9055514d42833f 17-26
+  s_08cc3a224b53df::t_76605dd2e182d0 65-81
+notebooks/11_single_step_evals.ipynb
+  s_08cc3a224b53df::t_a661c1ee1b02b6 226-230
+README.md
+  s_08cc3a224b53df::t_e69c8cba457128 81-82
+lefthook.yml
+  s_08cc3a224b53df::t_f50f37947472af 29-34
+CONTRIBUTING.md
+  s_08cc3a224b53df::t_e69c8cba457128 102,133,135-137,139-153
+notebooks/03_tools.ipynb
+  s_08cc3a224b53df::t_43df47155dcc1c 261
+uv.lock
+  s_08cc3a224b53df::t_5a2716da0b9282 3,5-62,74-449,459-707,716,748-936,944-949,952,954,961-966,969,971,987-1032,1060-1213,1223-1501,1508,1517-1518,1520-1657,1808-1917,1927-1960,1969-2389
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "378ab4adf53b55cb4ac0843d4421f3b9cdde794f",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
