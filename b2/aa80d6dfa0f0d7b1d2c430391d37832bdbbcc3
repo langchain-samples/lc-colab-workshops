@@ -1,0 +1,47 @@
+notebooks/03_tools.ipynb
+  s_08cc3a224b53df::t_1a47ab2b9828b9 453
+CONTRIBUTING.md
+  s_08cc3a224b53df::t_4e2c768b1a4bff 101,113-145
+  s_08cc3a224b53df::t_1739f816641365 146
+notebooks/02_backends.ipynb
+  s_08cc3a224b53df::t_1a47ab2b9828b9 209
+notebooks/05_subagents.ipynb
+  s_08cc3a224b53df::t_387b39dac14491 124
+notebooks/13_evals_in_ci.ipynb
+  s_08cc3a224b53df::t_387b39dac14491 611
+notebooks/10_evals_from_traces.ipynb
+  s_08cc3a224b53df::t_c656fd64c6ce26 373
+notebooks/09_under_the_hood.ipynb
+  s_08cc3a224b53df::t_1a47ab2b9828b9 183-184
+  s_08cc3a224b53df::t_c656fd64c6ce26 112-113,117-118
+notebooks/12_trajectory_evals.ipynb
+  s_08cc3a224b53df::t_7d24849f491810 191-192
+notebooks/06_middleware_and_hitl.ipynb
+  s_08cc3a224b53df::t_1a47ab2b9828b9 223
+pyproject.toml
+  s_08cc3a224b53df::t_103acea3bb3ecd 16,22-54
+lefthook.yml
+  s_08cc3a224b53df::t_6e66ef037804c5 22-28
+README.md
+  s_08cc3a224b53df::t_4e2c768b1a4bff 81-82
+tools/check_notebooks.py
+  s_08cc3a224b53df::t_e78f6bed8515e7 2-6
+uv.lock
+  s_08cc3a224b53df::t_364052c5b31325 77,86,404-428
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "b2aa80d6dfa0f0d7b1d2c430391d37832bdbbcc3",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
