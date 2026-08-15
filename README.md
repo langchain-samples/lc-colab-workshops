@@ -74,5 +74,9 @@ places.
 
 ## For maintainers
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the notebook conventions and
-`python3 tools/check_notebooks.py` to lint them.
+```bash
+uv sync --group dev && uv run lefthook install
+```
+
+Git hooks then strip notebook outputs, lint every notebook, and scan for credentials on each
+commit. See [CONTRIBUTING.md](CONTRIBUTING.md) for the notebook conventions.

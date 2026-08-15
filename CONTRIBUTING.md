@@ -79,10 +79,43 @@ error-prone.
 **The `.ipynb` files are the source of truth.** If you edit a notebook directly, the generator
 for it is stale — either port the change back or delete that generator.
 
+## Setup
+
+```bash
+uv sync --group dev
+uv run lefthook install
+```
+
+That installs the git hooks. You only need this if you are **editing** notebooks — running a
+lesson needs nothing but Colab and a LangSmith key.
+
+## Hooks
+
+Configured in `lefthook.yml`.
+
+**pre-commit**
+
+| Job | What it does |
+|---|---|
+| strip notebook outputs | `nbstripout` on staged notebooks, then re-stages them |
+| lint notebooks | `tools/check_notebooks.py` — badges, outputs, keys, cell syntax, structure |
+| scan for secrets | `tools/scan_secrets.sh` over every staged file |
+
+**pre-push** re-runs the notebook lint unconditionally, because the pre-commit job only fires
+when a notebook itself changed — a change to `tools/` could otherwise break every notebook
+without any hook noticing.
+
+The strip job passes `--keep-metadata-keys cellView`. Do not drop it: `cellView: form` is what
+collapses the bulk data cells in Colab, and losing it silently unfolds 200 lines of fixture data
+into the middle of a lesson.
+
+`git commit --no-verify` skips the hooks. Reasonable for a work-in-progress commit on a branch;
+never do it to get past the secret scan.
+
 ## Before opening a PR
 
 ```bash
-python3 tools/check_notebooks.py    # badges, outputs, secrets, syntax, structure
+python3 tools/check_notebooks.py    # runs automatically on commit, but check early
 ```
 
 Then actually run any notebook you changed, in Colab, from a fresh runtime. Static checks cannot
