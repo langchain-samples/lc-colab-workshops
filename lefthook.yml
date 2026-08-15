@@ -1,0 +1,34 @@
+# Git hooks for this repo. Install them once with:
+#
+#     uv sync --group dev && uv run lefthook install
+#
+# Skip a hook for one commit with `git commit --no-verify` (do this rarely, and
+# never for the secret scan).
+
+pre-commit:
+  parallel: false # strip runs before lint; lint reads what strip produced
+  jobs:
+    # Notebook outputs are never committed: they bloat diffs and can carry
+    # tunnel URLs, workspace IDs, and traced payloads.
+    # `uv run` because nbstripout lives in .venv, not on PATH. --no-sync keeps
+    # every commit from re-resolving the lockfile.
+    # Do not drop --keep-metadata-keys: `cellView: form` is what makes the bulk
+    # data cells collapse in Colab, and losing it silently unfolds them.
+    - name: strip notebook outputs
+      glob: "notebooks/*.ipynb"
+      run: uv run --no-sync nbstripout --keep-metadata-keys cellView {staged_files}
+      stage_fixed: true # re-stage whatever was rewritten
+
+    - name: lint notebooks
+      glob: "notebooks/*.ipynb"
+      run: python3 tools/check_notebooks.py
+
+    - name: scan for secrets
+      run: bash tools/scan_secrets.sh {staged_files}
+
+pre-push:
+  jobs:
+    # The pre-commit lint only fires when a notebook changed. This one always
+    # runs, so a change to tools/ or a bad merge cannot slip through.
+    - name: lint all notebooks
+      run: python3 tools/check_notebooks.py

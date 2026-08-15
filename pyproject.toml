@@ -1,0 +1,20 @@
+[project]
+name = "lc-colab-workshops"
+version = "0.1.0"
+description = "Hands-on Colab notebooks for building agents with Deep Agents and evaluating them with LangSmith"
+requires-python = ">=3.10"
+
+# Intentionally empty. The notebooks install their own pinned dependencies in
+# their setup cell so that each one is self-contained in Colab (see CONTRIBUTING.md).
+# Nothing here is needed to *run* a lesson.
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "lefthook>=2.1.10",   # git hook manager; installs the hooks in .git/hooks
+    "nbstripout>=0.9.1",  # clears notebook outputs before commit
+]
+
+[tool.uv]
+# This repo is a collection of notebooks, not an installable package.
+package = false
