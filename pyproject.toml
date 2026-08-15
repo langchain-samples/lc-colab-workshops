@@ -13,8 +13,42 @@ dependencies = []
 dev = [
     "lefthook>=2.1.10",   # git hook manager; installs the hooks in .git/hooks
     "nbstripout>=0.9.1",  # clears notebook outputs before commit
+    "ruff>=0.16.3",       # lints notebooks directly; understands cells and magics
 ]
 
 [tool.uv]
 # This repo is a collection of notebooks, not an installable package.
 package = false
+
+[tool.ruff]
+# Ruff reads .ipynb natively and treats each notebook as one namespace across its
+# cells, so a name defined in cell 3 and used in cell 9 is not a false positive.
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+# Deliberately narrow. These notebooks are read as exemplary code by workshop
+# participants, so the rules worth enforcing are the ones about dead and broken
+# code — not stylistic opinions that would fight the teaching narrative.
+select = [
+    "F",   # pyflakes: unused imports, undefined names, f-string mistakes
+    "E4",  # import placement
+    "E7",  # statement-level mistakes
+    "E9",  # syntax and IO errors
+    "I",   # import sorting
+    "C4",  # comprehension/literal simplifications
+]
+ignore = [
+    # `str(x)` inside an f-string is clearer to a learner than the `!s` conversion
+    # flag, which reads as line noise to anyone who has not met it before.
+    "RUF010",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*.ipynb" = [
+    # Lessons deliberately catch broad exceptions: 00_setup reports a failed
+    # preflight check rather than dumping a traceback at a workshop participant,
+    # and several lessons demo what happens when a tool raises.
+    "BLE001",
+    "S110",
+]

@@ -1,5 +1,9 @@
 """Repo lint for workshop notebooks. Run: python3 scratch/check_notebooks.py"""
-import ast, json, pathlib, re, sys
+import ast
+import json
+import pathlib
+import re
+import sys
 
 REPO = "langchain-samples/lc-colab-workshops"
 ALLOW_NO_CLOSING = {"00_setup"}

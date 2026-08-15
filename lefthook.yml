@@ -19,6 +19,13 @@ pre-commit:
       run: uv run --no-sync nbstripout --keep-metadata-keys cellView {staged_files}
       stage_fixed: true # re-stage whatever was rewritten
 
+    # Check, not --fix: these notebooks are generated from scripts in scratch/, and
+    # silently rewriting the .ipynb would desync it from its generator. Run
+    # `uv run ruff check --fix notebooks/` yourself and port the change to both.
+    - name: ruff
+      glob: "notebooks/*.ipynb"
+      run: uv run --no-sync ruff check {staged_files}
+
     - name: lint notebooks
       glob: "notebooks/*.ipynb"
       run: python3 tools/check_notebooks.py

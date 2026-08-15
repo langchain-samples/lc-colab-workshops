@@ -78,5 +78,5 @@ places.
 uv sync --group dev && uv run lefthook install
 ```
 
-Git hooks then strip notebook outputs, lint every notebook, and scan for credentials on each
-commit. See [CONTRIBUTING.md](CONTRIBUTING.md) for the notebook conventions.
+Git hooks then strip notebook outputs, run Ruff, lint every notebook, and scan for
+credentials on each commit. See [CONTRIBUTING.md](CONTRIBUTING.md) for the notebook conventions.

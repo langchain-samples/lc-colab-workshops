@@ -98,6 +98,7 @@ Configured in `lefthook.yml`.
 | Job | What it does |
 |---|---|
 | strip notebook outputs | `nbstripout` on staged notebooks, then re-stages them |
+| ruff | lints notebook code — unused imports, undefined names, import order |
 | lint notebooks | `tools/check_notebooks.py` — badges, outputs, keys, cell syntax, structure |
 | scan for secrets | `tools/scan_secrets.sh` over every staged file |
 
@@ -108,6 +109,40 @@ without any hook noticing.
 The strip job passes `--keep-metadata-keys cellView`. Do not drop it: `cellView: form` is what
 collapses the bulk data cells in Colab, and losing it silently unfolds 200 lines of fixture data
 into the middle of a lesson.
+
+### Ruff
+
+Ruff reads `.ipynb` natively and treats a notebook as **one namespace across its cells**, so a
+name defined in cell 3 and used in cell 9 is not flagged. It also understands `%%writefile`,
+`!shell` lines, and top-level `await`.
+
+The rule set in `pyproject.toml` is deliberately narrow — `F`, `E4`, `E7`, `E9`, `I`, `C4`. These
+notebooks are read as exemplary code, so the rules worth enforcing are the ones about dead and
+broken code, not stylistic opinions that fight the teaching narrative. Two deliberate
+exclusions:
+
+- **`RUF010`** — `str(x)` inside an f-string is clearer to a learner than the `!s` flag.
+- **`BLE001` / `S110`** in notebooks — lessons catch broad exceptions on purpose, so a failed
+  preflight check reports a remedy instead of dumping a traceback at a participant.
+
+The hook runs `ruff check`, not `--fix`, because the notebooks are generated from scripts in
+`scratch/` and silently rewriting an `.ipynb` desyncs it from its generator. Run
+`uv run ruff check --fix notebooks/` yourself, then port the change to both.
+
+### Why not ty
+
+`ty` does run on notebooks and is cell-aware, but it is not wired in. Two reasons:
+
+1. `from google.colab import userdata` appears in all 15 setup cells and **can never resolve**
+   outside Colab. Silencing it means disabling `unresolved-import` — the one rule that would
+   have caught a genuinely mistyped module name.
+2. With every notebook dependency installed, it reported 36 `invalid-argument-type` errors,
+   nearly all on dict literals passed where a `TypedDict` is expected (`subagents=[researcher]`,
+   `config=config`) — which is the documented API and works correctly.
+
+Making it useful would also mean installing the full agent stack into the dev environment, so
+that fixing a typo costs a several-hundred-megabyte sync. Revisit if ty gains notebook-aware
+import handling.
 
 `git commit --no-verify` skips the hooks. Reasonable for a work-in-progress commit on a branch;
 never do it to get past the secret scan.
