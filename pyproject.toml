@@ -2,7 +2,7 @@
 name = "lc-colab-workshops"
 version = "0.1.0"
 description = "Hands-on Colab notebooks for building agents with Deep Agents and evaluating them with LangSmith"
-requires-python = ">=3.10"
+requires-python = ">=3.11"  # deepagents requires 3.11+; Colab is well past it
 
 # Intentionally empty. The notebooks install their own pinned dependencies in
 # their setup cell so that each one is self-contained in Colab (see CONTRIBUTING.md).
@@ -14,6 +14,16 @@ dev = [
     "lefthook>=2.1.10",   # git hook manager; installs the hooks in .git/hooks
     "nbstripout>=0.9.1",  # clears notebook outputs before commit
     "ruff>=0.16.3",       # lints notebooks directly; understands cells and magics
+    "ty>=0.0.72",         # type-checks notebooks; catches wrong kwargs before a workshop does
+    # ty can only check calls whose libraries it can see, so the notebook stack is a dev
+    # dependency even though no notebook imports anything from this project. ~110 MB.
+    "deepagents~=0.7.6",
+    "langchain~=1.3.15",
+    "langchain-openai~=1.5.1",
+    "langsmith~=0.11.0",
+    "langchain-mcp-adapters~=0.3.2",
+    "openevals~=0.2.0",
+    "agentevals~=0.0.9",
 ]
 
 [tool.uv]
@@ -24,7 +34,7 @@ package = false
 # Ruff reads .ipynb natively and treats each notebook as one namespace across its
 # cells, so a name defined in cell 3 and used in cell 9 is not a false positive.
 line-length = 100
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 # Deliberately narrow. These notebooks are read as exemplary code by workshop
@@ -52,3 +62,20 @@ ignore = [
     "BLE001",
     "S110",
 ]
+
+[tool.ty.rules]
+# Everything not listed here stays on. These three are off because each fires on
+# code that is correct, and a checker that cries wolf gets muted.
+
+# `from google.colab import userdata` appears in all 15 setup cells and cannot
+# resolve outside Colab. Keeping this rule on would mean 15 permanent errors.
+unresolved-import = "ignore"
+
+# Fires ~36 times on dict literals passed where a TypedDict is expected —
+# `subagents=[researcher]`, `config={"configurable": ...}` — which is the
+# documented API and verified working.
+invalid-argument-type = "ignore"
+
+# `create_agent` has complex overloads; lesson 09's hand-built stack does not
+# match any of them statically but runs correctly.
+no-matching-overload = "ignore"

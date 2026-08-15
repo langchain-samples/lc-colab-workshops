@@ -26,6 +26,12 @@ pre-commit:
       glob: "notebooks/*.ipynb"
       run: uv run --no-sync ruff check {staged_files}
 
+    # Checks the whole notebooks/ dir rather than {staged_files}: a call in one
+    # notebook can break because a fixture in another changed.
+    - name: ty
+      glob: "notebooks/*.ipynb"
+      run: uv run --no-sync ty check notebooks/
+
     - name: lint notebooks
       glob: "notebooks/*.ipynb"
       run: python3 tools/check_notebooks.py

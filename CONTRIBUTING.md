@@ -99,6 +99,7 @@ Configured in `lefthook.yml`.
 |---|---|
 | strip notebook outputs | `nbstripout` on staged notebooks, then re-stages them |
 | ruff | lints notebook code — unused imports, undefined names, import order |
+| ty | type-checks notebook code — wrong or missing arguments, bad attributes |
 | lint notebooks | `tools/check_notebooks.py` — badges, outputs, keys, cell syntax, structure |
 | scan for secrets | `tools/scan_secrets.sh` over every staged file |
 
@@ -129,20 +130,27 @@ The hook runs `ruff check`, not `--fix`, because the notebooks are generated fro
 `scratch/` and silently rewriting an `.ipynb` desyncs it from its generator. Run
 `uv run ruff check --fix notebooks/` yourself, then port the change to both.
 
-### Why not ty
+### ty
 
-`ty` does run on notebooks and is cell-aware, but it is not wired in. Two reasons:
+ty reads `.ipynb` natively and is cell-aware. It is configured as a **denylist** in
+`pyproject.toml` — every rule stays on except three, each disabled because it fires on code that
+is correct:
 
-1. `from google.colab import userdata` appears in all 15 setup cells and **can never resolve**
-   outside Colab. Silencing it means disabling `unresolved-import` — the one rule that would
-   have caught a genuinely mistyped module name.
-2. With every notebook dependency installed, it reported 36 `invalid-argument-type` errors,
-   nearly all on dict literals passed where a `TypedDict` is expected (`subagents=[researcher]`,
-   `config=config`) — which is the documented API and works correctly.
+| Ignored | Why |
+|---|---|
+| `unresolved-import` | `from google.colab import userdata` is in all 15 setup cells and cannot resolve outside Colab |
+| `invalid-argument-type` | ~36 hits on dict literals passed where a `TypedDict` is expected (`subagents=[researcher]`) — the documented API |
+| `no-matching-overload` | `create_agent`'s overloads do not match lesson 09's hand-built stack, which runs correctly |
 
-Making it useful would also mean installing the full agent stack into the dev environment, so
-that fixing a typo costs a several-hundred-megabyte sync. Revisit if ty gains notebook-aware
-import handling.
+With those off, the notebooks produce **zero diagnostics**, and the rules that remain are the
+ones that catch the failure mode that actually costs a workshop: a call that no longer matches
+its library. Tested by reintroducing real bugs from this repo's history — `StoreBackend()`
+without `namespace`, `FilesystemPermission(path=...)`, `MemoryMiddleware()` with no arguments,
+a `bind_tools` result passed as a model — and ty caught four of them by name and line.
+
+This is why the notebook stack (`deepagents`, `langchain`, `openevals`, …) is a dev dependency:
+ty can only check calls into libraries it can see. It costs ~110 MB in `.venv` and runs in
+about 0.1 s.
 
 `git commit --no-verify` skips the hooks. Reasonable for a work-in-progress commit on a branch;
 never do it to get past the secret scan.
