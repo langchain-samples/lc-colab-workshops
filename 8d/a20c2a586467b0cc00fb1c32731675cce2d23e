@@ -1,0 +1,24 @@
+CONTRIBUTING.md
+  s_08cc3a224b53df::t_648ef5d5362ea9 64
+  s_08cc3a224b53df::t_6f95c590bb02e6 47-63
+tools/screenshot_widths.py
+  s_08cc3a224b53df::t_efcac6b0771811 1-45
+notebooks/00_setup.ipynb
+  s_08cc3a224b53df::t_d14df8a9fab809 39,46,63,156
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "8da20c2a586467b0cc00fb1c32731675cce2d23e",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
