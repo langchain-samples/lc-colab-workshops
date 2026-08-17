@@ -1,0 +1,20 @@
+notebooks/00_setup.ipynb
+  s_08cc3a224b53df::t_e55478e9ff0ed0 132-135
+  s_08cc3a224b53df::t_0f832e14546c8c 127,129,131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "7723d58255c58e75eacfc54681cab259ad1ce4fb",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
