@@ -1,0 +1,21 @@
+notebooks/11_single_step_evals.ipynb
+  s_08cc3a224b53df::t_fe543c5e40b763 226
+notebooks/12_trajectory_evals.ipynb
+  s_08cc3a224b53df::t_fe543c5e40b763 220
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "10af9062772b0c8ba06c69c94362cc52d195cc0f",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
