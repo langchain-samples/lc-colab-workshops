@@ -1,0 +1,14 @@
+notebooks/00_setup.ipynb
+  h_c00f8716a1efc5 35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "d16eb3b0bae4d476773f9004b04babdfafe95d5c",
+  "prompts": {},
+  "humans": {
+    "h_c00f8716a1efc5": {
+      "author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
