@@ -44,9 +44,24 @@ the capture instruction, and the caption that survives:
 > *Caption:* The same interrupt you resumed in code, resumed from the UI instead.
 ```
 
-`tools/check_notebooks.py` prints outstanding placeholders as a checklist. Replace one by
-dropping the PNG into `assets/screenshots/` and swapping the blockquote for an image using an
-**absolute** raw URL — Colab cannot resolve repo-relative image paths.
+`tools/check_notebooks.py` prints outstanding placeholders as a checklist.
+
+To replace one, drop the PNG into `assets/screenshots/` named `NN-short-slug.png` and embed it
+with an **`<img>` tag at half its pixel width**:
+
+```markdown
+<img src="https://raw.githubusercontent.com/langchain-samples/lc-colab-workshops/main/assets/screenshots/00-colab-secrets.png"
+     alt="Colab Secrets with notebook access enabled" width="670">
+```
+
+Two things are load-bearing here:
+
+- **The URL is absolute.** Colab cannot resolve repo-relative image paths.
+- **The width is half the file's pixel width.** Screenshots captured on a Retina display are 2x,
+  so `![](...)` markdown renders them at double size and they look blown up and soft. `<img>` with
+  an explicit width is honoured by both Colab and GitHub; plain markdown gives you no way to set one.
+
+`python3 tools/screenshot_widths.py` prints the correct width for every PNG in the folder.
 
 ## Repeated blocks
 
