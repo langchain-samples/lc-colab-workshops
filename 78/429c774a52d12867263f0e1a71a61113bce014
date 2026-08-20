@@ -1,0 +1,47 @@
+notebooks/04_mcp.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 43
+notebooks/02_backends.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 49
+notebooks/03_tools.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 42
+notebooks/06_middleware_and_hitl.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 44
+notebooks/05_subagents.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 42
+notebooks/09_under_the_hood.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 43
+notebooks/11_single_step_evals.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 43
+notebooks/14_online_evals.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 44
+notebooks/00_setup.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 96
+notebooks/13_evals_in_ci.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 42
+notebooks/01_first_deep_agent.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 47
+notebooks/07_memory.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 46
+notebooks/10_evals_from_traces.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 44
+notebooks/12_trajectory_evals.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 42
+notebooks/08_skills.ipynb
+  s_08cc3a224b53df::t_8c705b687b7b5f 43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "78429c774a52d12867263f0e1a71a61113bce014",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
