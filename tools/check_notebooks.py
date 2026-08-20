@@ -8,6 +8,13 @@ import sys
 REPO = "langchain-samples/lc-colab-workshops"
 ALLOW_NO_CLOSING = {"00_setup"}
 
+# Lessons that demonstrate an agent are driven from LangSmith Studio. The evals track
+# (10-14) is genuinely about calling things from code, so it is exempt.
+STUDIO_FIRST = {
+    "01_first_deep_agent", "02_backends", "03_tools", "04_mcp",
+    "05_subagents", "06_middleware_and_hitl", "07_memory", "08_skills",
+}
+
 
 def lint_code(source: str):
     """Parse a code cell, neutralising IPython magics and shell escapes."""
@@ -50,8 +57,10 @@ def main() -> int:
         if p.stem not in ALLOW_NO_CLOSING:
             if "📌 Key takeaways" not in src:
                 problems.append("no takeaways block")
-            if "🧠 Checkpoint" not in src:
-                problems.append("no checkpoint")
+        # Part 1 lessons are driven from Studio. Running an *agent* means passing
+        # messages, which is what this matches — calling a single tool directly is fine.
+        if p.stem in STUDIO_FIRST and re.search(r'\.a?invoke\(\s*\{\s*"messages"', src):
+            problems.append("runs an agent with .invoke() — Part 1 lessons run from Studio")
         for i, c in enumerate(cells):
             if c["cell_type"] != "code":
                 continue
@@ -60,8 +69,8 @@ def main() -> int:
                 problems.append(f"syntax in code cell {i}: {err}")
 
         shots += re.findall(r"📸 \*\*`([^`]+)`\*\*", src)
-        checks = src.count("🧠 Checkpoint")
-        print(f"  {p.name:34} {len(cells):3} cells  {checks} checkpoints  "
+        studio_calls = src.count("start_studio(")
+        print(f"  {p.name:34} {len(cells):3} cells  {studio_calls} studio  "
               f"{'FAIL: ' + '; '.join(problems) if problems else 'ok'}")
         if problems:
             failures.append(p.name)
