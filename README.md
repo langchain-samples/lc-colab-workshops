@@ -36,16 +36,18 @@ workspace admin can resolve.
 
 ## Part 2 — Evaluating agents
 
-The organising analogy: **single step ≈ unit test, trajectory ≈ integration test, final response
-≈ end-to-end test.**
+Part 2 evaluates **one shared deployment**, and the organising idea is that an evaluator is a
+**thing you store in LangSmith**, not code that lives in your test suite — which is what lets the
+same check score an experiment today and production traffic at 3am.
 
 | | Lesson | You build | Key ideas |
 |---|---|---|---|
-| 10 | [From vibes to a test suite](notebooks/10_evals_from_traces.ipynb) | your first dataset | traces → datasets, `evaluate()`, comparing experiments |
-| 11 | [Unit tests for agents](notebooks/11_single_step_evals.ipynb) | calibrated judges | `exact_match`, JSON match, LLM-as-judge, **calibration** |
-| 12 | [Integration tests](notebooks/12_trajectory_evals.ipynb) | trajectory metrics | match modes, tool-args matching, trajectory judges |
-| 13 | [Evals in CI](notebooks/13_evals_in_ci.ipynb) | a pytest suite + Actions | merge gates vs nightly, baselines, cost budgets |
-| 14 | [Online evals](notebooks/14_online_evals.ipynb) | a production loop | run rules, annotation queues, closing the loop |
+| 10 | [Deploy it](notebooks/10_deploy.ipynb) | a real deployment | `langgraph.json`, the `langgraph` CLI, LangSmith Deployments, `RemoteGraph` |
+| 11 | [Datasets from real traffic](notebooks/11_datasets.ipynb) | your first dataset | traces → examples, splits, versions, a rule that grows a dataset |
+| 12 | [Evaluators that live in LangSmith](notebooks/12_evaluators.ipynb) | stored evaluators | `perform_eval`, hub-stored judges, rules, retro-scoring an experiment |
+| 13 | [Testing the path](notebooks/13_trajectory_evals.ipynb) | trajectory metrics | path assertions, `agentevals` match modes, negative assertions |
+| 14 | [Online evals](notebooks/14_online_evals.ipynb) | a production loop | rules on live traffic, backfills, annotation queues, judge alignment |
+| 15 | [Evals in CI](notebooks/15_ci.ipynb) | a pytest suite + Actions | smoke vs nightly, baselines, what deserves to block a merge |
 
 ## How the notebooks work
 
@@ -53,9 +55,8 @@ The organising analogy: **single step ≈ unit test, trajectory ≈ integration 
   imports from this repo — open the `.ipynb` in Colab, add one secret, run.
 - **Standalone.** Lessons build on each other conceptually but not technically. You can open
   lesson 07 without having run 01–06.
-- **Checkpoints.** Each lesson has questions with hidden answers. Several can only be answered
-  by reading a trace in LangSmith, which is deliberate.
-- **One exercise each**, with a solution inline behind a toggle.
+- **Key takeaways.** Each lesson ends with the points worth remembering, most of which are things
+  that only become obvious after they have bitten you once.
 
 ## Running locally
 
