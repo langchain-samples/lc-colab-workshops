@@ -1,0 +1,21 @@
+notebooks/14_online_evals.ipynb
+  s_08cc3a224b53df::t_24597a53d05013 390-398,407-408,412-415,417-423,554-562
+  s_08cc3a224b53df::t_6f0a025d28725c 174-179,578-579
+  s_08cc3a224b53df::t_80477e95f4eff2 204-206
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "08959593285a5f6565dbab5d6a793ed018c02433",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
