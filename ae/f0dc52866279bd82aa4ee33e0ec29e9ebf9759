@@ -1,0 +1,23 @@
+notebooks/11_datasets.ipynb
+  s_08cc3a224b53df::t_2af479875b6907 264-265,271-272,278-279,285-286,311-316
+notebooks/12_evaluators.ipynb
+  s_08cc3a224b53df::t_62c64663791360 440,454-456,489,523-527
+  s_08cc3a224b53df::t_a7eeaa85e79494 594-596,605-615
+  s_08cc3a224b53df::t_c82949475b27a3 165-166,384-390,392,487,518-521,551-552,554-555,575-593,597-604,616-628,649-671,675,677,688,691,698,701-703
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "aef0dc52866279bd82aa4ee33e0ec29e9ebf9759",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
