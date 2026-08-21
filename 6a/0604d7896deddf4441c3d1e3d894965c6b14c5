@@ -1,0 +1,26 @@
+TICKET_DRAFT.md
+  s_08cc3a224b53df::t_f473c416d244aa 1-2,4-6,8,10-57,59,88,90,96-102,111,113-119,122,130,134-137,143-148,150-152,155-156,158,198
+  s_08cc3a224b53df::t_b5d5f1326f3e4e 7,78,87,120-121,123,129,131-132,154,160-167,169-197
+  s_08cc3a224b53df::t_986c98ef941b65 9,103,105-109,124-126,139-141,168
+  s_08cc3a224b53df::t_1d35a3c0f4b941 3,58,60-77,79-86,89,91-95,104,110,112,127-128,133,138,142,149,153,157,159,199
+notebooks/10_deploy.ipynb
+  s_08cc3a224b53df::t_8095a146ba9310 1-589
+notebooks/09_under_the_hood.ipynb
+  s_08cc3a224b53df::t_1e3f2526221e9f 417
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "6a0604d7896deddf4441c3d1e3d894965c6b14c5",
+  "prompts": {},
+  "sessions": {
+    "s_08cc3a224b53df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39896000-e181-425b-a55c-34f992e0f4cb",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Dariel Dato-on <293921406+darieldatoon@users.noreply.github.com>"
+    }
+  }
+}
