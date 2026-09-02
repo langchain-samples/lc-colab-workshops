@@ -13,6 +13,8 @@ You need **one** thing: a [LangSmith API key](https://smith.langchain.com). No O
 Anthropic key, no credit card, nothing installed locally — models are served through the
 LangSmith gateway, so a single key covers models, tracing, and Studio for all 15 notebooks.
 
+Prefer your own machine to Colab? [**Running locally**](#running-locally) is one `uv sync`.
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/langchain-samples/lc-colab-workshops/blob/main/notebooks/00_setup.ipynb)
  **Start here → [00 · Setup and preflight](notebooks/00_setup.ipynb)**
 
@@ -60,18 +62,31 @@ same check score an experiment today and production traffic at 3am.
 
 ## Running locally
 
-Colab is the intended environment, but the notebooks work in any Jupyter setup:
+Colab is the intended environment, but every lesson runs the same way on your machine. You
+need [`uv`](https://docs.astral.sh/uv/getting-started/installation/) and nothing else:
 
 ```bash
-uv venv && source .venv/bin/activate
-uv pip install deepagents~=0.7.6 langchain~=1.3.15 langchain-openai~=1.5.1 langsmith~=0.11.0
-export LANGSMITH_API_KEY=lsv2_...
-jupyter lab
+git clone https://github.com/langchain-samples/lc-colab-workshops
+cd lc-colab-workshops
+
+uv sync                       # the notebook stack, pinned to the same versions Colab installs
+cp .env.example .env          # then paste your key into LANGSMITH_API_KEY
+uv run jupyter lab notebooks
 ```
 
-The setup cell falls back to reading `LANGSMITH_API_KEY` from the environment when
-`google.colab` is unavailable. File paths are relative, so they resolve the same way in both
-places.
+The setup cell notices there is no Colab and adapts: it skips the `%pip install` — `uv sync`
+has already done it, and a uv venv has no `pip` to call — and reads the key from `.env` via
+`python-dotenv` instead of Colab Secrets. A missing key raises right there, in the cell that
+is about the key. Every path in the lessons is relative, so files land beside the notebook
+rather than in `/content`.
+
+### The gateway key
+
+Model calls go through the LangSmith gateway, which accepts a key of its own:
+`LANGSMITH_GATEWAY_API_KEY`. It is **optional** — leave it unset and the gateway is called
+with `LANGSMITH_API_KEY`, which is what a workshop does. Set it (in `.env`, or as a second
+Colab secret) only if your workspace issues a separate key for models. Either way
+`LANGSMITH_API_KEY` remains the credential for tracing, datasets, and deployments.
 
 ## For maintainers
 

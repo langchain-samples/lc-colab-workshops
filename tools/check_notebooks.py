@@ -24,8 +24,11 @@ def lint_code(source: str):
     for ln in source.splitlines():
         stripped = ln.lstrip()
         if cont or stripped.startswith(("!", "%")):
-            cont = ln.rstrip().endswith("\\")
-            lines.append("pass")
+            was_cont, cont = cont, ln.rstrip().endswith("\\")
+            # Keep the magic's own indentation — the setup cell's `%pip install` lives
+            # inside `if IN_COLAB:` and has to stay a statement in that block. Its
+            # continuation lines blank out, so reported line numbers still match.
+            lines.append("" if was_cont else ln[: len(ln) - len(stripped)] + "pass")
             continue
         lines.append(ln)
     try:

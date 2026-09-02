@@ -2,6 +2,10 @@
 #
 #     uv sync --group dev && uv run lefthook install
 #
+# The --group dev is load-bearing every time, not just the first: these jobs run
+# `uv run --no-sync`, so they see .venv as it stands, and a bare `uv sync` (what a
+# participant runs) removes ruff, ty and nbstripout from it.
+#
 # Skip a hook for one commit with `git commit --no-verify` (do this rarely, and
 # never for the secret scan).
 

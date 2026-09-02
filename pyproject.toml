@@ -10,25 +10,41 @@ requires-python = ">=3.11"  # deepagents requires 3.11+; Colab is well past it
 dependencies = []
 
 [dependency-groups]
-dev = [
-    "lefthook>=2.1.10",   # git hook manager; installs the hooks in .git/hooks
-    "nbstripout>=0.9.1",  # clears notebook outputs before commit
-    "ruff>=0.16.3",       # lints notebooks directly; understands cells and magics
-    "ty>=0.0.72",         # type-checks notebooks; catches wrong kwargs before a workshop does
-    # ty can only check calls whose libraries it can see, so the notebook stack is a dev
-    # dependency even though no notebook imports anything from this project. ~110 MB.
+# Everything the notebooks import, plus Jupyter — the local equivalent of what the
+# setup cell installs on Colab. Versions must match the setup cell's pins, or a
+# lesson teaches one API locally and another one in Colab.
+notebook = [
     "deepagents~=0.7.6",
     "langchain~=1.3.15",
     "langchain-openai~=1.5.1",
     "langsmith~=0.11.0",
-    "langchain-mcp-adapters~=0.3.2",
-    "openevals~=0.2.0",
-    "agentevals~=0.0.9",
+    "langchain-mcp-adapters~=0.3.2",     # 04
+    "langgraph-cli[inmem]~=0.4.31",      # 10
+    "openevals~=0.2.0",                  # 12
+    "agentevals~=0.0.9",                 # 13
+    "pytest~=8.3",                       # 15
+    "langsmith-studio-nb",               # 00-10; see [tool.uv.sources]
+    "python-dotenv>=1.1",                # reads the .env the setup cell loads locally
+    "jupyterlab>=4.4",
+]
+dev = [
+    { include-group = "notebook" },      # ty can only check calls into libraries it sees
+    "lefthook>=2.1.10",   # git hook manager; installs the hooks in .git/hooks
+    "nbstripout>=0.9.1",  # clears notebook outputs before commit
+    "ruff>=0.16.3",       # lints notebooks directly; understands cells and magics
+    "ty>=0.0.72",         # type-checks notebooks; catches wrong kwargs before a workshop does
 ]
 
 [tool.uv]
 # This repo is a collection of notebooks, not an installable package.
 package = false
+
+# So that a participant running locally gets a working kernel from a bare `uv sync`,
+# without also pulling the maintainer toolchain. Maintainers use `--group dev`.
+default-groups = ["notebook"]
+
+[tool.uv.sources]
+langsmith-studio-nb = { git = "https://github.com/langchain-samples/langsmith-studio-nb.git" }
 
 [tool.ruff]
 # Ruff reads .ipynb natively and treats each notebook as one namespace across its

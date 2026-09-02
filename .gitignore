@@ -25,6 +25,14 @@ venv/
 # Notebooks
 .ipynb_checkpoints/
 
+# Written by the lessons themselves. On Colab these land in /content; run locally,
+# the kernel's cwd is notebooks/.
+notebooks/agent_home/
+notebooks/workspace/
+notebooks/support_agent/
+notebooks/ci_evals/
+notebooks/.github/
+
 # OS / editor
 .DS_Store
 .vscode/
