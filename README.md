@@ -11,7 +11,7 @@ No theory before anything runs.
 
 You need **one** thing: a [LangSmith API key](https://smith.langchain.com). No OpenAI key, no
 Anthropic key, no credit card, nothing installed locally — models are served through the
-LangSmith gateway, so a single key covers models, tracing, and Studio for all 15 notebooks.
+LangSmith gateway, so a single key covers models, tracing, and Studio for all 17 notebooks.
 
 Prefer your own machine to Colab? [**Running locally**](#running-locally) is one `uv sync`.
 
@@ -34,7 +34,9 @@ workspace admin can resolve.
 | 06 | [Middleware & HITL](notebooks/06_middleware_and_hitl.ipynb) | a production support agent | retries, summarization, PII, custom middleware, approvals |
 | 07 | [Memory](notebooks/07_memory.ipynb) | an assistant that learns | `AGENTS.md`, `/memories/`, namespaces, per-user scoping |
 | 08 | [Skills](notebooks/08_skills.ipynb) | a report writer | `SKILL.md`, progressive disclosure, bundled files |
-| 09 | [Under the hood](notebooks/09_under_the_hood.ipynb) | *(nothing new)* | `create_agent` equivalence, LangGraph, checkpointers, time travel |
+| 09 | [Sandboxes](notebooks/09_sandboxes.ipynb) | an analyst with a real computer | `LangSmithSandbox`, `execute`, serving an artefact you can click |
+| 10 | [Interpreters & PTC](notebooks/10_interpreters_ptc.ipynb) | a support analyst that never sees PII | `CodeInterpreterMiddleware`, `ptc=[...]`, the interpreter as a boundary |
+| 11 | [Under the hood](notebooks/11_under_the_hood.ipynb) | *(nothing new)* | `create_agent` equivalence, LangGraph, checkpointers, time travel |
 
 ## Part 2 — Evaluating agents
 
@@ -44,12 +46,12 @@ same check score an experiment today and production traffic at 3am.
 
 | | Lesson | You build | Key ideas |
 |---|---|---|---|
-| 10 | [Deploy it](notebooks/10_deploy.ipynb) | a real deployment | `langgraph.json`, the `langgraph` CLI, LangSmith Deployments, `RemoteGraph` |
-| 11 | [Datasets from real traffic](notebooks/11_datasets.ipynb) | your first dataset | traces → examples, splits, versions, a rule that grows a dataset |
-| 12 | [Evaluators that live in LangSmith](notebooks/12_evaluators.ipynb) | stored evaluators | `perform_eval`, hub-stored judges, rules, retro-scoring an experiment |
-| 13 | [Testing the path](notebooks/13_trajectory_evals.ipynb) | trajectory metrics | path assertions, `agentevals` match modes, negative assertions |
-| 14 | [Online evals](notebooks/14_online_evals.ipynb) | a production loop | rules on live traffic, backfills, annotation queues, judge alignment |
-| 15 | [Evals in CI](notebooks/15_ci.ipynb) | a pytest suite + Actions | smoke vs nightly, baselines, what deserves to block a merge |
+| 12 | [Deploy it](notebooks/12_deploy.ipynb) | a real deployment | `langgraph.json`, the `langgraph` CLI, LangSmith Deployments, `RemoteGraph` |
+| 13 | [Datasets from real traffic](notebooks/13_datasets.ipynb) | your first dataset | traces → examples, splits, versions, a rule that grows a dataset |
+| 14 | [Evaluators that live in LangSmith](notebooks/14_evaluators.ipynb) | stored evaluators | `perform_eval`, hub-stored judges, rules, retro-scoring an experiment |
+| 15 | [Testing the path](notebooks/15_trajectory_evals.ipynb) | trajectory metrics | path assertions, `agentevals` match modes, negative assertions |
+| 16 | [Online evals](notebooks/16_online_evals.ipynb) | a production loop | rules on live traffic, backfills, annotation queues, judge alignment |
+| 17 | [Evals in CI](notebooks/17_ci.ipynb) | a pytest suite + Actions | smoke vs nightly, baselines, what deserves to block a merge |
 
 ## How the notebooks work
 

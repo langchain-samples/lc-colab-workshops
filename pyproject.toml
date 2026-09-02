@@ -17,13 +17,14 @@ notebook = [
     "deepagents~=0.7.6",
     "langchain~=1.3.15",
     "langchain-openai~=1.5.1",
-    "langsmith~=0.11.0",
+    "langsmith[sandbox]~=0.11.2",   # [sandbox] for 09
     "langchain-mcp-adapters~=0.3.2",     # 04
-    "langgraph-cli[inmem]~=0.4.31",      # 10
-    "openevals~=0.2.0",                  # 12
-    "agentevals~=0.0.9",                 # 13
-    "pytest~=8.3",                       # 15
-    "langsmith-studio-nb",               # 00-10; see [tool.uv.sources]
+    "langchain-quickjs~=0.3.5",          # 10
+    "langgraph-cli[inmem]~=0.4.31",      # 12
+    "openevals~=0.2.0",                  # 14
+    "agentevals~=0.0.9",                 # 15
+    "pytest~=8.3",                       # 17
+    "langsmith-studio-nb",               # 00-08, 11, 12; see [tool.uv.sources]
     "python-dotenv>=1.1",                # reads the .env the setup cell loads locally
     "jupyterlab>=4.4",
 ]
@@ -83,7 +84,7 @@ ignore = [
 # Everything not listed here stays on. These three are off because each fires on
 # code that is correct, and a checker that cries wolf gets muted.
 
-# `from google.colab import userdata` appears in all 15 setup cells and cannot
+# `from google.colab import userdata` appears in all 18 setup cells and cannot
 # resolve outside Colab. Keeping this rule on would mean 15 permanent errors.
 unresolved-import = "ignore"
 

@@ -24,8 +24,8 @@ Every lesson obeys these. `python3 tools/check_notebooks.py` enforces the mechan
 9. **Only `LANGSMITH_API_KEY`.** A notebook that needs a second credential has broken the
    course's central promise. The one exception is `LANGSMITH_GATEWAY_API_KEY`, which is
    optional and buys nothing a participant can see — unset, model calls use the key above.
-10. **Fixed closing structure:** checkpoints throughout → one exercise with an inline solution →
-    key takeaways → next link. (`00_setup` is exempt; it is a preflight, not a lesson.)
+10. **Fixed closing structure:** checkpoints throughout → key takeaways → next link.
+    (`00_setup` is exempt; it is a preflight, not a lesson.)
 
 ## Paths
 
@@ -71,8 +71,8 @@ Two things are load-bearing here:
 
 ## Repeated blocks
 
-Self-containment means the setup cell exists 15 times and the support-agent fixture 6 times.
-Canonical text lives in `scratch/nbkit.py`; notebook copies are wrapped in markers:
+Self-containment means the setup cell exists 18 times and the support-data fixture 3 times.
+Each copy is wrapped in markers:
 
 ```python
 # --- snippet:support_agent v1 ---
@@ -80,8 +80,16 @@ Canonical text lives in `scratch/nbkit.py`; notebook copies are wrapped in marke
 # --- /snippet ---
 ```
 
-Edit the canonical copy and rebuild rather than editing one notebook. If a **fourth** repeated
-block appears, treat it as a signal that the lessons have become too coupled.
+There is no longer a canonical copy to rebuild from, so the markers are a **search tool**: they
+tell you how many copies exist and where, and a change to one is a change you owe the others.
+Grep for the marker, edit every hit, bump the version suffix if the shape changed.
+
+```bash
+rg -l 'snippet:setup' notebooks/
+```
+
+If a **fourth** repeated block appears, treat it as a signal that the lessons have become too
+coupled.
 
 ## Writing checkpoints
 
@@ -91,14 +99,18 @@ block appears, treat it as a signal that the lessons have become too coupled.
   stays decorative through all of Part 1 and then Part 2 asks people to live in it.
 - One right answer, and the notebook must already contain the evidence for it.
 
-## Regenerating notebooks
+## The notebooks are the source of truth
 
-`scratch/` is gitignored and holds the generator scripts used to produce the current notebooks
-(`nbkit.py` plus `build_NN.py`). They exist because hand-escaping JSON across 400+ cells is
-error-prone.
+Edit the `.ipynb` directly. There is no build step.
 
-**The `.ipynb` files are the source of truth.** If you edit a notebook directly, the generator
-for it is stale — either port the change back or delete that generator.
+`scratch/` (gitignored) holds `build_NN.py.stale` — the generators that produced these notebooks
+originally. They are retired: none of them still reproduces its notebook, and running one
+silently reverts a lesson. Twice now, a rebuild has quietly undone hand-tuning that mattered —
+a `SummarizationMiddleware` trigger lowered so it would actually fire in a demo, and four
+`start_studio` calls in lesson 02. Neither showed up as an error; both showed up as a lesson
+that no longer taught what it claimed.
+
+If you ever restore one, diff its output against the live notebook before writing over anything.
 
 ## Setup
 
@@ -148,9 +160,9 @@ exclusions:
 - **`BLE001` / `S110`** in notebooks — lessons catch broad exceptions on purpose, so a failed
   preflight check reports a remedy instead of dumping a traceback at a participant.
 
-The hook runs `ruff check`, not `--fix`, because the notebooks are generated from scripts in
-`scratch/` and silently rewriting an `.ipynb` desyncs it from its generator. Run
-`uv run ruff check --fix notebooks/` yourself, then port the change to both.
+The hook runs `ruff check`, not `--fix`. A hook that rewrites a notebook mid-commit hands you a
+diff you have not read, in a file whose prose and code are one artefact. Run
+`uv run ruff check --fix notebooks/` yourself and look at what it did.
 
 ### ty
 
@@ -160,7 +172,7 @@ is correct:
 
 | Ignored | Why |
 |---|---|
-| `unresolved-import` | `from google.colab import userdata` is in all 15 setup cells and cannot resolve outside Colab |
+| `unresolved-import` | `from google.colab import userdata` is in all 18 setup cells and cannot resolve outside Colab |
 | `invalid-argument-type` | ~36 hits on dict literals passed where a `TypedDict` is expected (`subagents=[researcher]`) — the documented API |
 | `no-matching-overload` | `create_agent`'s overloads do not match lesson 09's hand-built stack, which runs correctly |
 

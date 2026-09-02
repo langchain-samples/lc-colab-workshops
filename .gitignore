@@ -32,6 +32,7 @@ notebooks/workspace/
 notebooks/support_agent/
 notebooks/ci_evals/
 notebooks/.github/
+notebooks/.langgraph_api/
 
 # OS / editor
 .DS_Store
