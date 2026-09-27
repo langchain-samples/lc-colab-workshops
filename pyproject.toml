@@ -23,7 +23,7 @@ notebook = [
     "langgraph-cli[inmem]~=0.4.31",      # 12
     "openevals~=0.2.0",                  # 14
     "agentevals~=0.0.9",                 # 15
-    "pytest~=8.3",                       # 17
+    "pytest>=8.3,<10.0",                       # 17
     "langsmith-studio-nb",               # 00-08, 11, 12; see [tool.uv.sources]
     "python-dotenv>=1.1",                # reads the .env the setup cell loads locally
     "jupyterlab>=4.4",
